@@ -1,0 +1,8 @@
+name: JumpBoots
+version: '1.2'
+main: com.ashkiano.jumpboots.JumpBoots
+api-version: '1.16'
+authors: [AshKiano]
+commands:
+  jumpboots:
+    description: Gives the player a pair of jump boots.
