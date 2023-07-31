@@ -9,16 +9,21 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Arrays;
 
 public class JumpBootsCommand implements CommandExecutor {
-    public static final String JUMP_BOOTS_LORE = ChatColor.GRAY + "Jump boots";
+    public static String JUMP_BOOTS_LORE;
+
+    private final JavaPlugin plugin;
 
     private final String jumpBootsUsePermission;
 
-    public JumpBootsCommand(String permission) {
+    public JumpBootsCommand(String permission, JavaPlugin plugin) {
         this.jumpBootsUsePermission = permission;
+        this.plugin = plugin;
+        JUMP_BOOTS_LORE = ChatColor.GRAY + plugin.getConfig().getString("jumpboots-lore", "Enjoy each of your jumps!");
     }
 
     @Override
@@ -35,10 +40,12 @@ public class JumpBootsCommand implements CommandExecutor {
             return true;
         }
 
+        String jumpBootsName = plugin.getConfig().getString("jumpboots-name", "Jump boots");
         ItemStack jumpBoots = new ItemStack(Material.LEATHER_BOOTS);
         LeatherArmorMeta meta = (LeatherArmorMeta) jumpBoots.getItemMeta();
         meta.setColor(Color.RED);
         meta.setLore(Arrays.asList(JUMP_BOOTS_LORE));
+        meta.setDisplayName(jumpBootsName);
         jumpBoots.setItemMeta(meta);
 
         player.getInventory().addItem(jumpBoots);
