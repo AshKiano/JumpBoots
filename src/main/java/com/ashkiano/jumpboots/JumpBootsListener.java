@@ -14,6 +14,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.util.Objects;
+
 public class JumpBootsListener implements Listener {
 
     private final JavaPlugin plugin;
@@ -58,7 +60,9 @@ public class JumpBootsListener implements Listener {
         }
 
         if (player.hasPotionEffect(PotionEffectType.JUMP)) {
-            player.removePotionEffect(PotionEffectType.JUMP);
+            if (Objects.requireNonNull(player.getPotionEffect(PotionEffectType.JUMP)).getDuration() > 820000) {
+                player.removePotionEffect(PotionEffectType.JUMP);
+            }
         }
     }
 }
