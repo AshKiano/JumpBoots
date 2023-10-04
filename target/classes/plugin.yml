@@ -1,5 +1,5 @@
 name: JumpBoots
-version: '1.5'
+version: '1.6'
 main: com.ashkiano.jumpboots.JumpBoots
 api-version: '1.16'
 authors: [AshKiano]
